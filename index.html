@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Shirt Unique | Boutique Personnalisée</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --primary-dark: #000000;
+            --text: #000000;
+            --light-bg: #ffffff;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --palestine-green: #4c0b97;
+            --palestine-red: #000000;
+            --palestine-black: #000000;
+            --palestine-white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header avec barre de recherche */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--palestine-black);
+        }
+        
+        .search-bar {
+            display: flex;
+            width: 300px;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--palestine-green);
+            border-radius: 25px 0 0 25px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            padding: 10px 15px;
+            background-color: var(--palestine-green);
+            color: var(--palestine-white);
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--palestine-white) 0%, var(--palestine-green) 100%);
+            color: var(--palestine-black);
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--palestine-red);
+            color: var(--palestine-white);
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Products Section */
+        .section-title {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            font-size: 2rem;
+            color: var(--palestine-green);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--palestine-green);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .product-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--palestine-black);
+        }
+        
+        .product-price {
+            color: var(--palestine-red);
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+        
+        .btn-small {
+            background: var(--palestine-green);
+            color: var(--palestine-white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-small:hover {
+            background: var(--palestine-red);
+        }
+        
+        /* Contact Form */
+        .contact-section {
+            padding: 4rem 0;
+            background: var(--palestine-white);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--palestine-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--palestine-green);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--palestine-green);
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--palestine-green);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        textarea {
+            min-height: 120px;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--palestine-green);
+            color: var(--palestine-white);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background: var(--palestine-red);
+        }
+        
+        /* Messages de confirmation */
+        .form-message {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: var(--palestine-black);
+            color: var(--palestine-white);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header avec barre de recherche -->
+    <header>
+        <div class="logo">Moha</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Rechercher un design...">
+            <button>🔍</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>T-Shirt MY</h1>
+            <p>Personnalisez avec nos designs exclusifs. Qualité premium et livraison rapide.</p>
+            <a href="#products" class="btn">VOIR LES DESIGNS</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="container">
+        <h2 class="section-title">NOS DESIGNS</h2>
+        <div class="products-grid">
+            <!-- T-Shirt 1 -->
+            <div class="product-card">
+                <img src="c:\Users\windo\Downloads\3DCF1A48-19E5-48FB-A335-1C244F197473-removebg-preview.png" alt="T-Shirt Palestine حور الفلسطيني" class="product-image">
+                <div class="product-info">
+                    <h3>T-Shirt حور الفلسطيني</h3>
+                    <p class="product-price">À partir de 24,99€</p>
+                    <button class="btn-small">Personnaliser</button>
+                </div>
+            </div>
+            
+            <!-- T-Shirt 2 -->
+            <div class="product-card">
+                <img src="c:\Users\windo\Downloads\Untitled_Project__11___1_-removebg-preview.png" alt="T-Shirt Portugal" class="product-image">
+                <div class="product-info">
+                    <h3>T-Shirt Portugal</h3>
+                    <p class="product-price">À partir de 22,99€</p>
+                    <button class="btn-small">Personnaliser</button>
+                </div>
+            </div>
+            
+            <!-- T-Shirt 3 -->
+            <div class="product-card">
+                <img src="c:\Users\windo\Downloads\E8BF4D2C-622B-4CAB-B129-8780A8B13B3D-removebg-preview (1).png" alt="T-Shirt TUNSIE" class="product-image">
+                <div class="product-info">
+                    <h3>T-Shirt Tunisie</h3>
+                    <p class="product-price">À partir de 19,99€</p>
+                    <button class="btn-small">Personnaliser</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">DEMANDE DE PERSONNALISATION</h2>
+            <form id="contactForm" class="contact-form" action="https://formsubmit.co/tounsiiii77@gmail.com" method="POST">
+                <!-- Champs cachés pour configurer FormSubmit -->
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table"> <!-- Format du mail -->
+                <input type="hidden" name="_subject" value="Nouvelle demande de T-Shirt personnalisé">
+                <input type="hidden" name="_autoresponse" value="Merci pour votre demande! Nous vous contacterons sous 48h.">
+                
+                <div class="form-group">
+                    <label for="name">Nom complet*</label>
+                    <input type="text" id="name" name="Nom" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="Email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" name="Téléphone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="design">Design choisi</label>
+                    <select id="design" name="Design">
+                        <option value="">-- Sélectionnez --</option>
+                        <option value="حور الفلسطيني">حور الفلسطيني</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Tunisie">Tunisie</option>
+                        <option value="Autre">Autre design</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Détails de personnalisation*</label>
+                    <textarea id="message" name="Détails" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">ENVOYER LA DEMANDE</button>
+                
+                <!-- Message de confirmation -->
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 ShopTonTshirt - Tous droits réservés</p>
+            <p>Créé par Moha</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation au scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.product-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Fonctionnalité de recherche basique
+            const searchInput = document.querySelector('.search-bar input');
+            const searchButton = document.querySelector('.search-bar button');
+            
+            searchButton.addEventListener('click', function() {
+                const searchTerm = searchInput.value.toLowerCase();
+                alert('Recherche pour: ' + searchTerm);
+            });
+
+            // Gestion du formulaire
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Afficher un message de chargement
+                formMessage.style.display = 'block';
+                formMessage.textContent = 'Envoi en cours...';
+                formMessage.className = 'form-message';
+                
+                // Envoyer le formulaire
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        formMessage.textContent = '✔ Message envoyé! Nous vous contacterons sous 48h.';
+                        formMessage.className = 'form-message success';
+                        contactForm.reset();
+                    } else {
+                        throw new Error('Erreur réseau');
+                    }
+                })
+                .catch(error => {
+                    formMessage.textContent = "✖ Erreur d'envoi. Contactez-nous directement par email.";
+                    formMessage.className = 'form-message error';
+                });
+            });
+            
+            // Boutons "Personnaliser" qui scrollent vers le formulaire
+            document.querySelectorAll('.btn-small').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('contact').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
